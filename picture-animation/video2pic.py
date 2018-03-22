@@ -53,8 +53,8 @@ if __name__ == "__main__":
     success = True
     success, image = vidcap.read()
     while success:
-        cv2.imwrite(argvs.opath + "frame_%d.jpg" % count, image)
-        print("output file: " + argvs.opath + "frame_%d.jpg" % count)
+        cv2.imwrite(argvs.opath + "frame_%08d.jpg" % (count), image)
+        print("output file: " + argvs.opath + "frame_%08d.jpg" % (count))
         success, image = vidcap.read()
         count += 1
 

@@ -32,7 +32,11 @@ if __name__ == "__main__":
         sys.exit()
     # if argvs.path[-1] != os.path.sep:
     #     argvs.path = argvs.path + os.path.sep
+    count = 0
     with open(argvs.path + '.txt', 'w') as f:
         for img in os.listdir(argvs.path):
             line = argvs.path + os.path.sep + img + argvs.suffix + '\n'
             f.write(line)
+            count += 1
+    print("\n Successful generate %d lines on %s " % (count,
+                                                      argvs.path + '.txt'))
