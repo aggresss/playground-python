@@ -69,12 +69,8 @@ if __name__ == "__main__":
     # if argvs.path[-1] != os.path.sep:
     #     argvs.path = argvs.path + os.path.sep
 
-    try:
-        image_list = walk_dir(argvs.path)
-        for imgpath in image_list:
-            im = Image.open(imgpath)
-            print(imgpath)
-            resize_save(im, imgpath, argvs.width, argvs.length)
-
-    except Exception, e:
-        print('Error:', e)
+    image_list = walk_dir(argvs.path)
+    for imgpath in image_list:
+        im = Image.open(imgpath)
+        print(imgpath)
+        resize_save(im, imgpath, argvs.width, argvs.length)
