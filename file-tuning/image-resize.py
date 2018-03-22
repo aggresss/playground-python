@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import sys, os, re
+import sys
+import os
 import argparse
 from PIL import Image
-from optparse import OptionParser
- 
+
+
 # Traverse the picture files in a folder
 def walk_dir(dir):
     image_list = []
@@ -18,10 +19,11 @@ def walk_dir(dir):
                 image_list.append(path)
     return image_list
 
+
 # save the resize picture
 def resize_save(im, imgpath, width, length):
     if width == 0 and length == 0:
-        return  
+        return
     elif width != 0 or length != 0:
         size = auto_resize(im, width, length)
     else:
@@ -29,15 +31,16 @@ def resize_save(im, imgpath, width, length):
     new_im = im.resize(size)
     new_im.save(imgpath)
 
-   
+
 # Calculate picture aspect ratio
 def auto_resize(im, width, length):
     size = im.size
     if length == 0:
         length = int(float(width) / size[0] * size[1])
     if width == 0:
-        width = int(float(length)/ size[1] * size[0])
+        width = int(float(length) / size[1] * size[0])
     return (int(width), int(length))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -53,19 +56,11 @@ if __name__ == "__main__":
         default=None,
         help='file path you want to modify')
     parser.add_argument(
-        '-w',
-        '--width',
-        type=int,
-        default=0,
-        help='modify width')
+        '-w', '--width', type=int, default=0, help='modify width')
     parser.add_argument(
-        '-l',
-        '--length',
-        type=int,
-        default=0,
-        help='modify height')
+        '-l', '--length', type=int, default=0, help='modify height')
     argvs = parser.parse_args()
-    if argvs.path == None:
+    if argvs.path is None:
         print('please input fielpath')
         sys.exit()
     # if argvs.path[-1] != os.path.sep:
@@ -75,8 +70,8 @@ if __name__ == "__main__":
         image_list = walk_dir(argvs.path)
         for imgpath in image_list:
             im = Image.open(imgpath)
-            print (imgpath)
+            print(imgpath)
             resize_save(im, imgpath, argvs.width, argvs.length)
-            
-    except Exception,e:
-        print('Error:',e)
+
+    except Exception, e:
+        print('Error:', e)

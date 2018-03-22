@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import sys, os
+import sys
+import os
 import argparse
 import random
 
@@ -26,7 +27,7 @@ if __name__ == "__main__":
         default=str(random.randint(1000, 9999)),
         help='filename prefix')
     args = parser.parse_args()
-    if args.path == None:
+    if args.path is None:
         print('please input fielpath')
         sys.exit()
     if args.path[-1] != os.path.sep:
@@ -41,5 +42,3 @@ if __name__ == "__main__":
         os.rename(oldname, newname)
         print(oldname, ' ======> ', newname)
         n += 1
-
-#EOF

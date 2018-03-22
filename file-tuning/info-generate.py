@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import sys, os
+import sys
+import os
 import argparse
 
 if __name__ == "__main__":
@@ -24,16 +25,14 @@ if __name__ == "__main__":
         type=str,
         default='',
         help='suffix you want to add the list each line')
- 
+
     argvs = parser.parse_args()
-    if argvs.path == None:
+    if argvs.path is None:
         print('please input fielpath')
         sys.exit()
     # if argvs.path[-1] != os.path.sep:
     #     argvs.path = argvs.path + os.path.sep
     with open(argvs.path + '.txt', 'w') as f:
         for img in os.listdir(argvs.path):
-            line = argvs.path + os.path.sep + img+ argvs.suffix +'\n'
+            line = argvs.path + os.path.sep + img + argvs.suffix + '\n'
             f.write(line)
-
-# EOF
