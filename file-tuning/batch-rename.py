@@ -36,7 +36,8 @@ if __name__ == "__main__":
     n = 0
     for i in file_list:
         oldname = args.path + file_list[n]
-        newname = args.path + args.prefix + '_' + str(n + 1) + '.jpg'
+        file_ext = os.path.splitext(file_list[n])[1]
+        newname = args.path + args.prefix + '_' + str(n + 1) + file_ext
         os.rename(oldname, newname)
         print(oldname, ' ======> ', newname)
         n += 1
