@@ -57,11 +57,12 @@ if __name__ == "__main__":
     count = 0
     for img in os.listdir(argvs.ipath):
         filenames.append(argvs.ipath + img)
+        print(argvs.ipath + img)
         count += 1
-    print('\n\n'+'Load %d file to create gif file........' % (count))
 
     if not all(f.lower().endswith(VALID_EXTENSIONS) for f in filenames):
         print('Only png and jpg files allowed')
         sys.exit(1)
 
+    print('\n' + 'Load %d file to create gif file........' % (count))
     create_gif(filenames, argvs.duration)
