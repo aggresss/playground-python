@@ -8,8 +8,6 @@ import datetime
 import imageio
 import argparse
 
-VALID_EXTENSIONS = ('png', 'jpg')
-
 
 def create_gif(filenames, duration):
     print("Start to compose the gif file, please wait........")
@@ -60,6 +58,7 @@ if __name__ == "__main__":
         print(argvs.ipath + img)
         count += 1
 
+    VALID_EXTENSIONS = ('png', 'jpg')
     if not all(f.lower().endswith(VALID_EXTENSIONS) for f in filenames):
         print('Only png and jpg files allowed')
         sys.exit(1)
