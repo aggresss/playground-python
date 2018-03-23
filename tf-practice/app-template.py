@@ -7,19 +7,14 @@ from __future__ import print_function
 
 import tensorflow as tf
 
-flags = tf.flags
-logging = tf.logging
-
-flags.DEFINE_string(
-    'filename', '',
-    'File (Image) or File list (Text/No header TSV) to process')
-
-# flags.DEFINE_bool("para_name_2", "default_val", "description")
-FLAGS = flags.FLAGS
+tf.flags.DEFINE_string('filename', 'this is default string.', 'File Name')
+tf.flags.DEFINE_integer('filenum', 1024, 'File number')
+tf.flags.DEFINE_bool('filebool', True, "description bool")
+FLAGS = tf.flags.FLAGS
 
 
 def main(_):
-    FLAGS.filename
+    print(FLAGS)
 
 
 if __name__ == "__main__":
