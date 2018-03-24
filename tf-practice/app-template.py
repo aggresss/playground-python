@@ -14,7 +14,21 @@ FLAGS = tf.flags.FLAGS
 
 
 def main(_):
-    print(FLAGS)
+    # print(FLAGS)
+    a = tf.constant([1.0, 2.0], name="a")
+    b = tf.constant([2.0, 3.0], name="b")
+    result = a + b
+    print(result)
+
+    # sess = tf.Session()
+    # with sess.as_default():
+    #     print(result.eval())
+
+    # with tf.Session() as sess:
+    #     print(sess.run(result))
+
+    # with tf.Session() as sess:
+    #     print(result.eval(session=sess))
 
 
 if __name__ == "__main__":
