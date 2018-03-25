@@ -20,15 +20,15 @@ def main(_):
     result = a + b
     print(result)
 
-    # sess = tf.Session()
-    # with sess.as_default():
-    #     print(result.eval())
+    sess = tf.Session()
+    with sess.as_default():
+        print(result.eval())
 
-    # with tf.Session() as sess:
-    #     print(sess.run(result))
+    with tf.Session() as sess:
+        print(sess.run(result))
 
-    # with tf.Session() as sess:
-    #     print(result.eval(session=sess))
+    with tf.Session() as sess:
+        print(result.eval(session=sess))
 
 
 if __name__ == "__main__":
