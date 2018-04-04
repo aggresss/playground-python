@@ -58,8 +58,8 @@ if __name__ == "__main__":
         filenames.append(argvs.ipath + img)
         print(argvs.ipath + img)
         count += 1
-    filenames.sort()
-    # filenames.sort(key=lambda x: int(x[-12:-4]))
+    #filenames.sort()
+    filenames.sort(key=lambda x: int(x[-12:-4]))
 
     VALID_EXTENSIONS = ('png', 'jpg')
     if not all(f.lower().endswith(VALID_EXTENSIONS) for f in filenames):
