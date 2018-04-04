@@ -57,8 +57,8 @@ if __name__ == "__main__":
     for img in os.listdir(argvs.ipath):
         filenames.append(argvs.ipath + img)
         count += 1
-    # filenames.sort()
-    filenames.sort(key=lambda x: int(x[-12:-4]))
+    filenames.sort()
+    # filenames.sort(key=lambda x: int(x[-12:-4]))
     for item in filenames:
         print(item)
 
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     print("Start to compose the video file, please wait........")
     output_file = 'video-%s.mp4' % datetime.datetime.now().strftime(
         '%Y-%M-%d-%H-%M-%S')
-    fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+    fourcc = cv2.VideoWriter_fourcc(*'DIVX')
     # videoWriter = cv2.VideoWriter(output_file, fourcc, argvs.fps, (960, 544))
     videoWriter = cv2.VideoWriter(output_file, fourcc, argvs.fps, (640, 368))
     for filename in filenames:
