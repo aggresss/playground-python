@@ -12,6 +12,9 @@ CV_FOURCC('U', '2', '6', '3') = H263 codec
 CV_FOURCC('I', '2', '6', '3') = H263I codec
 CV_FOURCC('F', 'L', 'V', '1') = FLV1 codec
 
+extensions = ['avi', 'mp4']
+codecs = ['MJPG', 'H264', 'DIVX', 'XVID', 'X264']
+
 """
 
 from __future__ import print_function
