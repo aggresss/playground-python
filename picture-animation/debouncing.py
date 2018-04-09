@@ -56,6 +56,7 @@ if __name__ == "__main__":
     im_list.sort(key=lambda x: int(x.split('_')[1].split('.')[0]))
 
     # calculate fitness brightness curve
+    print("Start to caculate the brightness of each file ...")
     bright_list = []
     for im in im_list:
         b = brightness(argvs.ipath + im)
@@ -70,10 +71,13 @@ if __name__ == "__main__":
     fitting = curve_func(im_index)
 
     # Save fitness pictures
+    print("Start to debouncing the brightness of each file ...")
     for cnt, img in enumerate(im_list):
+        print(cnt, bright_list[cnt], fitting[cnt])
         im = Image.open(argvs.ipath + img)
         im = ImageEnhance.Brightness(im).enhance(
             fitting[cnt] / bright_list[cnt])
         im.save(argvs.ipath + img)
 
+    print("Successful debouncing the pictures.")
     sys.exit(0)
