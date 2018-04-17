@@ -48,13 +48,13 @@ def auto_resize(im, width, length):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog='image-resize.py',
-        usage=' python %(prog)s -p path -w wide -h height ',
+        usage=' python %(prog)s -i inpath -w wide -h height ',
         description='Batch modify image resolution.',
         epilog='SEE ALSO: http://github.com/aggresss/playground-python')
 
     parser.add_argument(
-        '-p',
-        '--path',
+        '-i',
+        '--ipath',
         type=str,
         default=None,
         help='file path you want to modify')

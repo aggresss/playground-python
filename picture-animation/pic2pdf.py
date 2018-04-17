@@ -8,26 +8,36 @@ from __future__ import division
 import sys
 import os
 import datetime
-import imageio
 import argparse
+from reportlab.lib.pagesizes import A4, landscape
+from reportlab.pdfgen import canvas
 
 
-def create_gif(filenames, duration):
-    print("Start to compose the gif file, please wait........")
-    images = []
-    for filename in filenames:
-        images.append(imageio.imread(filename))
-    output_file = 'Gif-%s.gif' % datetime.datetime.now().strftime(
+def create_pdf(filenames, isLandscape):
+    print("Start to compose the pdf file, please wait........")
+    output_file = 'pdf-%s.pdf' % datetime.datetime.now().strftime(
         '%Y-%M-%d-%H-%M-%S')
-    imageio.mimsave(output_file, images, duration=duration)
-    print("Success to compose the gif file: %s" % (output_file))
+
+    if isLandscape is True:
+        (w, h) = landscape(A4)
+        c = canvas.Canvas(output_file, pagesize=landscape(A4))
+    else:
+        (w, h) = A4
+        c = canvas.Canvas(output_file, pagesize=A4)
+
+    for filename in filenames:
+        c.drawImage(filename, 0, 0, w, h)
+        c.showPage()
+    c.save()
+
+    print("Success to compose the pdf file: %s" % (output_file))
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        prog='pic2gif.py',
-        usage=' python %(prog)s -i pictrue_path -d duration',
-        description='Make pictures a gif file.',
+        prog='pic2pdf.py',
+        usage=' python %(prog)s -i pictrue_path -l landscope',
+        description='Make pictures to a pdf file.',
         epilog='SEE ALSO: http://github.com/aggresss/playground-python')
 
     parser.add_argument(
@@ -37,11 +47,11 @@ if __name__ == "__main__":
         default=None,
         help='picture path you want to collect')
     parser.add_argument(
-        '-d',
-        '--duration',
-        type=float,
-        default=0.0,
-        help='the duration of each picture')
+        '-l',
+        '--landscope',
+        type=bool,
+        default=False,
+        help='need landscope')
 
     argvs = parser.parse_args()
     if argvs.ipath is None:
@@ -49,10 +59,6 @@ if __name__ == "__main__":
         sys.exit()
     if argvs.ipath[-1] != os.path.sep:
         argvs.ipath = argvs.ipath + os.path.sep
-
-    if argvs.duration == 0.0:
-        print('please input the gif duration')
-        sys.exit()
 
     filenames = []
     count = 0
@@ -67,5 +73,5 @@ if __name__ == "__main__":
         print('Only png and jpg files allowed')
         sys.exit(1)
 
-    print('\n' + 'Load %d file to create gif file........' % (count))
-    create_gif(filenames, argvs.duration)
+    print('\n' + 'Load %d file to create pdf file........' % (count))
+    create_pdf(filenames, argvs.landscope)
