@@ -26,4 +26,4 @@ if __name__ == "__main__":
     parser.add_argument('require_int', type=int)
 
     args = parser.parse_args()
-    print args
+    print(args)
