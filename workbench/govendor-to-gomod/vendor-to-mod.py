@@ -52,19 +52,19 @@ if __name__ == "__main__":
     if len(vendor_dict['package']) > 0:
         with open(argvs.mfile, 'a') as mod_file:
             mod_file.write("""
-require(
+require (
 """)
             for index, element in enumerate(vendor_dict['package']):
                 # module path
                 mod_file.write('\t' + element['path'] + ' ')
                 # assemble version-date-revision
-                # 1. version
+                # 0x00 version
                 if 'version' in element and element['version'] != '':
                     v_index = element['version'].find('v')
                     mod_file.write(element['version'][v_index:])
                 else:
                     mod_file.write('v0.0.0')
-                # 2. date
+                # 0x01 date
                 if 'revisionTime' in element and element['revisionTime'] != '':
                     utc_time = datetime.strptime(
                         element['revisionTime'],
@@ -72,7 +72,7 @@ require(
                     mod_file.write('-' + utc_time.strftime('%Y%m%d%H%M%S'))
                 else:
                     mod_file.write('-197001010000')
-                # 3. revision
+                # 0x02 revision
                 if 'revision' in element and element['revision'] != '':
                     mod_file.write('-' + element['revision'][0:12])
                 else:
