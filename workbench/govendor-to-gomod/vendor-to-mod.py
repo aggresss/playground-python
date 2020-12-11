@@ -79,5 +79,16 @@ require(
                     mod_file.write('-000000000000')
                 # EOL
                 mod_file.write('\n')
-
+            # End of require
             mod_file.write(')\n')
+
+            # replace mock.com/foo/bar => base/mock.com/foo/bar
+            if argvs.replace is not None:
+                if argvs.replace[-1] != '/':
+                    argvs.replace = argvs.replace + '/'
+
+                mod_file.write('\n')
+                for index, element in enumerate(vendor_dict['package']):
+                    mod_file.write('replace ' + element['path'])
+                    mod_file.write(' => ' + argvs.replace + element['path'])
+                    mod_file.write('\n')
