@@ -105,3 +105,4 @@ ENV/
 
 # misc
 *.out
+*.dSYM/
